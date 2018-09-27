@@ -8,8 +8,8 @@ package vistas;
 import java.time.ZoneId;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import universidad.Alumno;
-import universidad.AlumnoData;
+import modelo.Alumno;
+import modelo.AlumnoData;
 import universidad.Conexion;
 
 /**
@@ -166,7 +166,7 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
             alumno.setActivo(false);
         }
         alumnoData.guardarAlumno(alumno);
-        
+        jtId.setText(Integer.toString(alumno.getId()));
     }//GEN-LAST:event_btnGuardarActionPerformed
 
 

@@ -5,6 +5,7 @@
  */
 package universidad;
 
+import modelo.CursadaData;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.logging.Level;

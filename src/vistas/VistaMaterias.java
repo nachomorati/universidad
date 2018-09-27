@@ -8,8 +8,8 @@ package vistas;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import universidad.Conexion;
-import universidad.Materia;
-import universidad.MateriaData;
+import modelo.Materia;
+import modelo.MateriaData;
 
 /**
  *

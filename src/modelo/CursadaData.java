@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package universidad;
+package modelo;
 
+import modelo.Alumno;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import universidad.Conexion;
 
 /**
  *
@@ -20,7 +22,7 @@ import java.util.logging.Logger;
 public class CursadaData {
     private Connection connection;
     
-    CursadaData(Conexion conexion) {
+    public CursadaData(Conexion conexion) {
         try {
             connection = conexion.getConnection();
         } catch (SQLException ex) {
