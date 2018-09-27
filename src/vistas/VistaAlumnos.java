@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import java.sql.Date;
 import java.time.ZoneId;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,6 +69,11 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
         jLabel4.setText("ACTIVO");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -105,20 +111,18 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLimpiar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jtNombre))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(26, 26, 26)
-                                .addComponent(cbActivo))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jdFecNac, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel4)
+                        .addGap(26, 26, 26)
+                        .addComponent(cbActivo)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jdFecNac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtNombre)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -168,6 +172,17 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
         alumnoData.guardarAlumno(alumno);
         jtId.setText(Integer.toString(alumno.getId()));
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        int id = Integer.parseInt(jtId.getText());
+        Alumno alumno = alumnoData.buscarAlumno(id);
+        if(alumno != null) {
+            jtId.setText(Integer.toString(alumno.getId()));
+            jtNombre.setText(alumno.getNombre());
+            jdFecNac.setDate(Date.valueOf(alumno.getFecNac()));
+            cbActivo.setSelected(alumno.isActivo());
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

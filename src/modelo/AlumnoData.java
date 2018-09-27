@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.ZoneId;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import universidad.Conexion;
@@ -48,5 +49,24 @@ public class AlumnoData {
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public Alumno buscarAlumno(int id) {
+        Alumno alumno = null;
+        try {
+            String sql = "SELECT * FROM alumno WHERE id = ? ;";
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                alumno = new Alumno(resultSet.getString("nombre"));
+                alumno.setId(resultSet.getInt("id"));
+                alumno.setFecNac(resultSet.getDate("fecNac").toLocalDate());
+                alumno.setActivo(resultSet.getBoolean("activo"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return alumno;
     }
 }
